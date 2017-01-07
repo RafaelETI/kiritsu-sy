@@ -1,5 +1,4 @@
 <?php
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -8,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Inspiracao
  *
  * @ORM\Table(name="inspiracao")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InspiracaoRepository")
  */
 class Inspiracao
 {

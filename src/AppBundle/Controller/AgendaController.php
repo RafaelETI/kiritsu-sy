@@ -1,5 +1,4 @@
 <?php
-
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -14,13 +13,9 @@ class AgendaController extends Controller
     public function visualizarAction(Request $request)
     {
         $agenda = $this->getDoctrine()
+            ->getManager()
             ->getRepository('AppBundle:Agenda')
-            ->createQueryBuilder('a')
-            ->where('a.historia = 0')
-            ->orderBy('a.data', 'asc')
-            ->addOrderBy('a.hora', 'asc')
-            ->getQuery()
-            ->getResult()
+            ->listar()
         ;
         
         return $this->render('agenda/visualizar.html.twig', ['agenda' => $agenda]);

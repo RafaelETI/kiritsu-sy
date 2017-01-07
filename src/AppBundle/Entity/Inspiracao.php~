@@ -1,22 +1,30 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Categoria
+ * Inspiracao
  *
- * @ORM\Table(name="categoria", uniqueConstraints={@ORM\UniqueConstraint(name="nome", columns={"nome"})})
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoriaRepository")
+ * @ORM\Table(name="inspiracao")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InspiracaoRepository")
  */
-class Categoria
+class Inspiracao
 {
     /**
      * @var string
      *
-     * @ORM\Column(name="nome", type="string", length=30, nullable=false)
+     * @ORM\Column(name="nome", type="string", length=50, nullable=false)
      */
     private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="imagem", type="blob", length=16777215, nullable=false)
+     */
+    private $imagem;
 
     /**
      * @var boolean
@@ -34,7 +42,7 @@ class Categoria
      *
      * @param string $nome
      *
-     * @return Categoria
+     * @return Inspiracao
      */
     public function setNome($nome)
     {
@@ -51,6 +59,30 @@ class Categoria
     public function getNome()
     {
         return $this->nome;
+    }
+
+    /**
+     * Set imagem
+     *
+     * @param string $imagem
+     *
+     * @return Inspiracao
+     */
+    public function setImagem($imagem)
+    {
+        $this->imagem = $imagem;
+
+        return $this;
+    }
+
+    /**
+     * Get imagem
+     *
+     * @return string
+     */
+    public function getImagem()
+    {
+        return $this->imagem;
     }
 
     /**
