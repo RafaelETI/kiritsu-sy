@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% set title = 'Agenda &#10157; Visualizar' %}
+
+{% block title %}{{ title|raw }}{% endblock %}
+
+{% block body %}
+    <table class="lista">
+		<caption>{{ title|raw }}</caption>
+		
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Categoria</th>
+				<th>Atividade</th>
+				<th>Data</th>
+				<th>Dia</th>
+				<th>Hora</th>
+				<th>Ações</th>
+			</tr>
+		</thead>
+
+		<tbody>
+            {% for a in agenda %}
+                {% if date(a.data) < date('00:00:00') %}
+                    {% set dataStatus = 'atrasado' %}
+                {% elseif date(a.data) == date('00:00:00') %}
+                    {% set dataStatus = 'hoje' %}
+                {% else %}
+                    {% set dataStatus = '' %}
+                {% endif %}
+                
+                <tr>
+                    <th scope="row">{{ a.id }}</th>
+                    <td class="{{ a.periodico?: 'pontual' }}">{{ a.categoria }}</td>
+                    <td title="{{ a.atividade }}">{{ a.atividade[:90] }}</td>
+                    <td class="centro {{ dataStatus }}">{{ a.data|date('d/m/Y') }}</td>
+                    <td class="centro">{{ a.data|date('l')[:3] }}</td>
+                    <td class="centro">{{ a.hora is not empty? a.hora|date('H:i'): '' }}</td>
+
+                    <td class="centro">
+                        {% if a.periodico %}
+                            <a href="/agenda/cadastrar?categoria={{ a.categoria }}&amp;data={{ a.data|date('Y-m-d') }}&amp;hora={{ a.hora is not empty? a.hora|date('H:i:s'): '' }}&amp;periodico={{ a.periodico }}&amp;historia=1">
+								<img src="/img/copia.png" alt="Cópia" title="Historiar duplicando" /></a>
+                        {% else %}
+                            <a href="/agenda/historiar/{{ a.id }}" class="miticlick" title="{{ a.categoria }}">
+                                <img src="/img/v.png" alt="Letra V" title="Historiar" /></a>
+                        {% endif %}
+
+                        <a href="/agenda/editar/{{ a.id }}">
+                            <img src="/img/lapis.png" alt="Lápis" title="Editar" /></a>
+
+                        <a href="/agenda/excluir/{{ a.id }}" class="miticlick" title="{{ a.categoria }}">
+                            <img src="/img/x.png" alt="Letra X" title="Excluir" /></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+		
+		<tfoot>
+			<tr>
+				<td colspan="100">
+					<div class="esquerda">?? / ??</div>
+					<div><span class=''>&#8634;</span><span class=''>&#8592;</span><span class=''>?</span><a href='?pagina=2'>?</a><a href='?pagina=2'>&#8594;</a><a href='?pagina=2'>&#8635;</a></div>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+{% endblock %}
