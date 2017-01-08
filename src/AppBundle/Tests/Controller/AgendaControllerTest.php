@@ -1,17 +1,41 @@
 <?php
 namespace AppBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\ {
+    Bundle\FrameworkBundle\Test\WebTestCase,
+    Component\DomCrawler\Crawler
+};
 
 class AgendaControllerTest extends WebTestCase
 {
-    public function testVisualizar()
+    private static $client;
+    
+    public static function setUpBeforeClass()
     {
-        $client = static::createClient();
-
-        $crawler = $client->request('GET', '/');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('Ok', $crawler->filter('#test')->text());
+        self::$client = static::createClient();
+    }
+    
+    private function padrao(Crawler $crawler)
+    {
+        $this->assertSame(200, self::$client->getResponse()->getStatusCode());
+        $this->assertSame('EOF', $crawler->filter('#test')->text());
+    }
+    
+    public function testGetVisualizar()
+    {
+        $crawler = self::$client->request('GET', '/');
+        $this->padrao($crawler);
+        
+        $this->assertSame('Agenda > Visualizar', $crawler->filter('caption')->text());
+        $this->assertCount(16, $crawler->filter('th[scope=row]'));
+    }
+    
+    public function testCadastrar()
+    {
+        $crawler = self::$client->request('GET', '/agenda/cadastrar');
+        $this->padrao($crawler);
+        
+        $this->assertSame('Agenda > Cadastrar', $crawler->filter('caption')->text());
+        $this->assertSame('Cadastrar', $crawler->filter('button')->text());
     }
 }
