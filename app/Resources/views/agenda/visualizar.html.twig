@@ -6,7 +6,7 @@
 
 {% block body %}
     <table class="lista">
-		<caption>{{ title }}</caption>
+        <caption>{{ app.session.flashBag.peek('notice')? app.session.flashBag.get('notice')[0]: title }}</caption>
 		
 		<thead>
 			<tr>

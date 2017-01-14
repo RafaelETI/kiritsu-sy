@@ -5,7 +5,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use AppBundle\Entity\Agenda;
 use AppBundle\Form\AgendaType;
@@ -13,10 +14,10 @@ use AppBundle\Form\AgendaType;
 class AgendaController extends Controller
 {
     /**
-     * @Route("/", name="agenda-get-visualizar")
+     * @Route("/", name="agenda-visualizar")
      * @Method("GET")
      */
-    public function getVisualizarAction()
+    public function visualizarAction()
     {
         $agenda = $this->getDoctrine()
             ->getManager()
@@ -29,19 +30,28 @@ class AgendaController extends Controller
     
     /**
      * @Route("/agenda/cadastrar", name="agenda-cadastrar")
+     * @Method({"GET", "POST"})
+     * 
+     * todo: separar métodos get e post
      */
-    public function cadastrarAction()
+    public function cadastrarAction(Request $request)
     {
         $agenda = new Agenda;
         
-        $agenda->setCategoria('Categoria');
-        $agenda->setAtividade('Atividade.');
-        $agenda->setData(new \DateTime('now'));
-        $agenda->setHora(new \DateTime('now'));
-        $agenda->setPeriodico(0);
-        $agenda->setHistoria(0);
-        
         $form = $this->createForm(AgendaType::class, $agenda);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $agenda = $form->getData();
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($agenda);
+            $em->flush();
+            
+            $this->addFlash('notice', 'Sucesso ao cadastrar o agendamento!');
+            
+            return $this->redirectToRoute('agenda-visualizar');
+        }
         
         return $this->render('agenda/cadastrar.html.twig', ['form' => $form->createView()]);
     }

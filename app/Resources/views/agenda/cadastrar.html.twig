@@ -12,31 +12,71 @@
             <tbody>
                 <tr>
                     <th>{{ form_label(form.categoria) }}</th>
-                    <td>{{ form_widget(form.categoria) }} {{ form_errors(form.categoria) }}</td>
+                    
+                    <td>
+                        {{ form_widget(form.categoria) }}
+                        
+                        <div class="error">
+                            {{ form_errors(form.categoria) }}
+                        </div>
+                    </td>
+                    
                     <td></td>
                 </tr>
 
                 <tr>
                     <th>{{ form_label(form.atividade) }}</th>
-                    <td>{{ form_widget(form.atividade) }} <div>{{ form_errors(form.atividade) }}</div></td>
+                    
+                    <td>
+                        {{ form_widget(form.atividade) }}
+                        
+                        <div class="error">
+                            {{ form_errors(form.atividade) }}
+                        </div>
+                    </td>
+                    
                     <td id="agenda_atividade_miticontar" width="40"></td>
                 </tr>
 
                 <tr>
                     <th>{{ form_label(form.data) }}</th>
-                    <td>{{ form_widget(form.data) }} {{ form_errors(form.data) }}</td>
+                    
+                    <td>
+                        {{ form_widget(form.data) }}
+                        
+                        <div class="error">
+                            {{ form_errors(form.data) }}
+                        </div>
+                    </td>
+                    
                     <td></td>
                 </tr>
 
                 <tr>
                     <th>{{ form_label(form.hora) }}</th>
-                    <td>{{ form_widget(form.hora) }} {{ form_errors(form.hora) }}</td>
+                    
+                    <td>
+                        {{ form_widget(form.hora) }}
+                        
+                        <div class="error">
+                            {{ form_errors(form.hora) }}
+                        </div>
+                    </td>
+                    
                     <td></td>
                 </tr>
 
                 <tr>
                     <th>{{ form_label(form.periodico) }}</th>
-                    <td>{{ form_widget(form.periodico) }} {{ form_errors(form.periodico) }}</td>
+                    
+                    <td>
+                        {{ form_widget(form.periodico) }}
+                        
+                        <div class="error">
+                            {{ form_errors(form.periodico) }}
+                        </div>
+                    </td>
+                    
                     <td></td>
                 </tr>
             </tbody>

@@ -21,7 +21,7 @@ class AgendaControllerTest extends WebTestCase
         $this->assertSame('EOF', $crawler->filter('#test')->text());
     }
     
-    public function testGetVisualizar()
+    public function testVisualizar()
     {
         $crawler = self::$client->request('GET', '/');
         $this->padrao($crawler);

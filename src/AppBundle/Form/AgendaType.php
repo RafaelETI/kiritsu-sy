@@ -17,7 +17,18 @@ class AgendaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('categoria', TextType::class, ['attr' => ['maxlength' => 30]])
+            ->add(
+                'categoria',
+                TextType::class,
+                
+                [
+                    'attr' => [
+                        'minlength' => 2,
+                        'maxlength' => 30,
+                        'autofocus' => null
+                    ]
+                ]
+            )
             
             ->add(
                 'atividade',
@@ -27,6 +38,7 @@ class AgendaType extends AbstractType
                     'required' => false,
                     
                     'attr' => [
+                        'minlength' => 2,
                         'maxlength' => 1000,
                         'cols' => 100,
                         'rows' => 25,
@@ -34,7 +46,7 @@ class AgendaType extends AbstractType
                 ]
             )
             
-            ->add('data', DateType::class)
+            ->add('data', DateType::class, ['data' => new \DateTime])
             ->add('hora', TimeType::class, ['required' => false])
             
             ->add(
@@ -43,16 +55,15 @@ class AgendaType extends AbstractType
                 
                 [
                     'choices' => [
-                        '' => null,
-                        'Sim' => 1,
                         'Não' => 0,
+                        'Sim' => 1,
                     ],
                     
                     'choices_as_values' => true,
                 ]
             )
             
-            ->add('historia', HiddenType::class)
+            ->add('historia', HiddenType::class, ['data' => 0])
             ->add('cadastrar', SubmitType::class, ['label' => 'Cadastrar'])
         ;
     }

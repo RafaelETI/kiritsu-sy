@@ -1,22 +1,22 @@
 /*==========fonts==========*/
-@font-face{
+@font-face {
     font-family: merienda;
     src: url(/font/Merienda-Bold.ttf);
 }
 
-@font-face{
+@font-face {
     font-family: abhaya-libre;
     src: url(/font/AbhayaLibre-Regular.ttf);
 }
 
 /*==========tudo==========*/
-*{
+* {
 	margin: 0px;
 	padding: 0px;
 }
 
 /*==========pagina==========*/
-body{
+body {
 	padding: 10px;
 	background: #F2F2F2;
 	text-align: justify;
@@ -26,7 +26,7 @@ body{
 }
 
 /*==========nav==========*/
-nav{
+nav {
 	width: 155px;
 	height: 550px;
 	position: fixed;
@@ -34,9 +34,9 @@ nav{
 	/*border-right: solid 1px;*/
 }
 
-nav div{margin-bottom: 20px}
+nav div {margin-bottom: 20px}
 
-nav h1{
+nav h1 {
 	display: inline;
 	position: relative;
 	bottom: 13px;
@@ -44,74 +44,75 @@ nav h1{
 	font-size: 18px;
 }
 
-nav a{margin-right: 10px}
+nav a {margin-right: 10px}
 
 /*==========conteudo==========*/
-#conteudo{
+#conteudo {
 	margin-left: 155px;
 	padding-left: 20px;
 	/*border-left: solid 1px;*/
 }
 
 /*==========rodape==========*/
-footer{margin: 100px 0px 0px 200px}
+footer {margin: 100px 0px 0px 200px}
 
 /*==========tag==========*/
-hr{margin: 10px 0px}
+hr {margin: 10px 0px}
 
 /*texto*/
-p{margin:20px 0px}
-h2{margin:20px 0px 10px}
-abbr{cursor:help}
+p {margin:20px 0px}
+h2 {margin:20px 0px 10px}
+abbr {cursor:help}
 
 /*link*/
-a{color:blue}
+a {color:blue}
 
 /*tabela*/
-caption, th, tfoot, table.lista tr:nth-child(even){background: #DDF}
+caption, th, tfoot, table.lista tr:nth-child(even) {background: #DDF}
 
-caption{
+caption {
 	border: solid 1px;
 	border-bottom: none;
 	font-weight: bold;
 	font-size: 18px;
 }
 
-table{
+table {
 	margin: auto;
 	border-collapse: collapse;
 	background: #FFF;
 	text-align: left;
 }
 
-table.lista{width: 100%}
+table.lista {width: 100%}
 
-th{text-align: center}
+th {text-align: center}
 
-form th{text-align: left}
+form th {text-align: left}
 
-th, td{
+th, td {
 	border: solid 1px black;
 	padding: 2px 5px;
 }
 
-td a img, nav a img{width: 16px}
-tfoot{text-align: right}
-tfoot span, tfoot a{margin:0px 5px}
+td a img, nav a img {width: 16px}
+tfoot {text-align: right}
+tfoot span, tfoot a {margin:0px 5px}
 
 /*lista*/
-ul, ol{margin: 0px 0px 30px 20px}
+ul, ol {margin: 0px 0px 30px 20px}
+table ul {margin: 0px 15px}
 
 /*==========id==========*/
 #test {display: none}
-#divisao{clear: left}
-#logo{width: 40px}
-#inspiracao{width: 95px}
+#divisao {clear: left}
+#logo {width: 40px}
+#inspiracao {width: 95px}
 
 /*==========classe==========*/
-.esquerda{float: left}
-.centro{text-align: center}
-.direita{text-align: right}
-.pontual{color: red}
-.atrasado{color: red}
-.hoje{color: darkorange}
+.esquerda {float: left}
+.centro {text-align: center}
+.direita {text-align: right}
+.pontual, .error {color: red}
+.atrasado {color: red}
+.hoje {color: darkorange}

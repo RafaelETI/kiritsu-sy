@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Agenda
@@ -15,6 +16,9 @@ class Agenda
      * @var string
      *
      * @ORM\Column(name="categoria", type="string", length=30, nullable=false)
+     * 
+     * @Assert\NotBlank()
+     * @Assert\Length(min = 2, max = 30)
      */
     private $categoria;
 
@@ -22,6 +26,8 @@ class Agenda
      * @var string
      *
      * @ORM\Column(name="atividade", type="string", length=1100, nullable=true)
+     * 
+     * @Assert\Length(min = 2, max = 1000)
      */
     private $atividade;
 
@@ -29,6 +35,9 @@ class Agenda
      * @var \DateTime
      *
      * @ORM\Column(name="data", type="date", nullable=false)
+     * 
+     * @Assert\NotBlank()
+     * @Assert\Date()
      */
     private $data;
 
@@ -36,6 +45,8 @@ class Agenda
      * @var \DateTime
      *
      * @ORM\Column(name="hora", type="time", nullable=true)
+     * 
+     * @Assert\Time()
      */
     private $hora;
 
@@ -43,6 +54,9 @@ class Agenda
      * @var boolean
      *
      * @ORM\Column(name="periodico", type="boolean", nullable=false)
+     * 
+     * @Assert\NotBlank()
+     * @Assert\Choice({0, 1})
      */
     private $periodico;
 
@@ -50,6 +64,8 @@ class Agenda
      * @var boolean
      *
      * @ORM\Column(name="historia", type="boolean", nullable=false)
+     * 
+     * @Assert\NotBlank()
      */
     private $historia;
 
@@ -61,8 +77,6 @@ class Agenda
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-
 
     /**
      * Set categoria
