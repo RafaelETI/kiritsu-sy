@@ -9,7 +9,6 @@ use Symfony\ {
 class AgendaControllerTest extends WebTestCase
 {
     private static $client;
-    private $id;
     
     public static function setUpBeforeClass()
     {
