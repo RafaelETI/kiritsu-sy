@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% set title = 'Agenda > Cadastrar' %}
+{% set title = 'Agenda > Formulário' %}
 
 {% block title %}{{ title }}{% endblock %}
 
 {% block body %}
     {{ form_start(form) }}
         <table>
-            <caption>{{ title }}</caption>
+            <caption>{{ app.session.flashBag.peek('notice')? app.session.flashBag.get('notice')[0]: title }}</caption>
             
             <tbody>
                 <tr>

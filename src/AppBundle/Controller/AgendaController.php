@@ -6,7 +6,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 use AppBundle\Entity\Agenda;
 use AppBundle\Form\AgendaType;
@@ -19,11 +18,7 @@ class AgendaController extends Controller
      */
     public function visualizarAction()
     {
-        $agenda = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Agenda')
-            ->listar()
-        ;
+        $agenda = $this->getDoctrine()->getRepository('AppBundle:Agenda')->listar();
         
         return $this->render('agenda/visualizar.html.twig', ['agenda' => $agenda]);
     }
@@ -31,12 +26,12 @@ class AgendaController extends Controller
     /**
      * @Route("/agenda/cadastrar", name="agenda-cadastrar")
      * @Method({"GET", "POST"})
-     * 
-     * todo: separar métodos get e post
      */
     public function cadastrarAction(Request $request)
     {
         $agenda = new Agenda;
+        $agenda->setData(new \DateTime);
+        $agenda->setHistoria(0);
         
         $form = $this->createForm(AgendaType::class, $agenda);
         $form->handleRequest($request);
@@ -53,6 +48,50 @@ class AgendaController extends Controller
             return $this->redirectToRoute('agenda-visualizar');
         }
         
-        return $this->render('agenda/cadastrar.html.twig', ['form' => $form->createView()]);
+        return $this->render('agenda/form.html.twig', ['form' => $form->createView()]);
+    }
+    
+    /**
+     * @Route("/agenda/editar/{id}", name="agenda-editar")
+     * @Method({"GET", "POST"})
+     */
+    public function editarAction(Request $request, $id)
+    {
+        $agenda = $this->getDoctrine()->getRepository('AppBundle:Agenda')->find($id);
+        !$agenda->getHistoria()? $agenda->setHistoria(0): null;
+        
+        $form = $this->createForm(AgendaType::class, $agenda);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $agenda = $form->getData();
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($agenda);
+            $em->flush();
+            
+            $this->addFlash('notice', 'Sucesso ao editar o agendamento!');
+            
+            return $this->redirectToRoute('agenda-editar', ['id' => $id]);
+        }
+        
+        return $this->render('agenda/form.html.twig', ['form' => $form->createView()]);
+    }
+    
+    /**
+     * @Route("/agenda/excluir/{id}", name="agenda-excluir")
+     * @Method("GET")
+     */
+    public function excluirAction($id)
+    {
+        $agenda = $this->getDoctrine()->getRepository('AppBundle:Agenda')->find($id);
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($agenda);
+        $em->flush();
+        
+        $this->addFlash('notice', 'Sucesso ao excluir o agendamento!');
+        
+        return $this->redirectToRoute('agenda-visualizar');
     }
 }

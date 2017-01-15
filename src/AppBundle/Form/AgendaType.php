@@ -46,7 +46,7 @@ class AgendaType extends AbstractType
                 ]
             )
             
-            ->add('data', DateType::class, ['data' => new \DateTime])
+            ->add('data', DateType::class)
             ->add('hora', TimeType::class, ['required' => false])
             
             ->add(
@@ -63,8 +63,8 @@ class AgendaType extends AbstractType
                 ]
             )
             
-            ->add('historia', HiddenType::class, ['data' => 0])
-            ->add('cadastrar', SubmitType::class, ['label' => 'Cadastrar'])
+            ->add('historia', HiddenType::class)
+            ->add('cadastrar', SubmitType::class, ['label' => 'Salvar'])
         ;
     }
 }

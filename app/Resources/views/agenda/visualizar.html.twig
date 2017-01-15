@@ -50,7 +50,7 @@
                         <a href="/agenda/editar/{{ a.id }}">
                             <img src="/img/lapis.png" alt="Lápis" title="Editar" /></a>
 
-                        <a href="/agenda/excluir/{{ a.id }}" class="miticlick" title="{{ a.categoria }}">
+                        <a href="/agenda/excluir/{{ a.id }}" title="{{ a.categoria }}" onclick="return confirm('Tem certeza (' + this.title + ')?');">
                             <img src="/img/x.png" alt="Letra X" title="Excluir" /></a>
                     </td>
                 </tr>
