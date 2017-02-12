@@ -55,9 +55,8 @@ class AgendaController extends Controller
      * @Route("/agenda/editar/{id}", name="agenda-editar")
      * @Method({"GET", "POST"})
      */
-    public function editarAction(Request $request, $id)
+    public function editarAction(Request $request, Agenda $agenda)
     {
-        $agenda = $this->getDoctrine()->getRepository('AppBundle:Agenda')->find($id);
         !$agenda->getHistoria()? $agenda->setHistoria(0): null;
         
         $form = $this->createForm(AgendaType::class, $agenda);
@@ -72,7 +71,7 @@ class AgendaController extends Controller
             
             $this->addFlash('notice', 'Sucesso ao editar o agendamento!');
             
-            return $this->redirectToRoute('agenda-editar', ['id' => $id]);
+            return $this->redirectToRoute('agenda-editar', ['id' => $agenda->getId()]);
         }
         
         return $this->render('agenda/form.html.twig', ['form' => $form->createView()]);
@@ -82,10 +81,8 @@ class AgendaController extends Controller
      * @Route("/agenda/excluir/{id}", name="agenda-excluir")
      * @Method("GET")
      */
-    public function excluirAction($id)
+    public function excluirAction(Agenda $agenda)
     {
-        $agenda = $this->getDoctrine()->getRepository('AppBundle:Agenda')->find($id);
-        
         $em = $this->getDoctrine()->getManager();
         $em->remove($agenda);
         $em->flush();

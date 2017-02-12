@@ -60,7 +60,11 @@
 		<tfoot>
 			<tr>
 				<td colspan="100">
-					<div class="esquerda">?? / ??</div>
+					<div class="esquerda">
+                        <span>{{ '??' }}</span> /
+                        <span id="agendamentos-total">{{ agenda|length }}</span>
+                    </div>
+                    
 					<div><span class=''>&#8634;</span><span class=''>&#8592;</span><span class=''>?</span><a href='?pagina=2'>?</a><a href='?pagina=2'>&#8594;</a><a href='?pagina=2'>&#8635;</a></div>
 				</td>
 			</tr>

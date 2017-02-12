@@ -64,7 +64,7 @@ class AgendaType extends AbstractType
             )
             
             ->add('historia', HiddenType::class)
-            ->add('cadastrar', SubmitType::class, ['label' => 'Salvar'])
+            ->add('salvar', SubmitType::class, ['label' => 'Salvar'])
         ;
     }
 }
