@@ -12,6 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Agenda
 {
+    const NUM_ITEMS = 15;
+    
     /**
      * @var string
      *

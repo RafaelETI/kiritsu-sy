@@ -68,7 +68,7 @@ class AgendaControllerTest extends WebTestCase
         $this->smoke($crawler);
         
         $this->assertSame('Sucesso ao cadastrar o agendamento!', $crawler->filter('caption')->text());
-        $this->assertCount(17, $crawler->filter('th[scope=row]'));
+        $this->assertCount(15, $crawler->filter('th[scope=row]'));
         $this->assertSame('17', $crawler->filter('#agendamentos-total')->text());
         
         $this->assertSame('Teste', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(0)->text());
@@ -146,7 +146,7 @@ class AgendaControllerTest extends WebTestCase
         $this->smoke($crawler);
         
         $this->assertSame('Sucesso ao excluir o agendamento!', $crawler->filter('caption')->text());
-        $this->assertCount(16, $crawler->filter('th[scope=row]'));
+        $this->assertCount(15, $crawler->filter('th[scope=row]'));
         $this->assertSame('16', $crawler->filter('#agendamentos-total')->text());
         
         $this->assertNotSame('Teste 2', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(0)->text());

@@ -60,12 +60,14 @@
 		<tfoot>
 			<tr>
 				<td colspan="100">
-					<div class="esquerda">
-                        <span>{{ '??' }}</span> /
-                        <span id="agendamentos-total">{{ agenda|length }}</span>
-                    </div>
+                    {% if agenda.haveToPaginate %}
+                        {{ pagerfanta(agenda, 'default', {routeName: 'agenda-visualizar-paginada'}) }}
+                    {% endif %}
                     
-					<div><span class=''>&#8634;</span><span class=''>&#8592;</span><span class=''>?</span><a href='?pagina=2'>?</a><a href='?pagina=2'>&#8594;</a><a href='?pagina=2'>&#8635;</a></div>
+					<div class="direita">
+                        <span>{{ agenda.getCurrentPageResults|length }}</span> /
+                        <span id="agendamentos-total">{{ agenda.getNbResults }}</span>
+                    </div>
 				</td>
 			</tr>
 		</tfoot>

@@ -13,12 +13,14 @@ use AppBundle\Form\AgendaType;
 class AgendaController extends Controller
 {
     /**
-     * @Route("/", name="agenda-visualizar")
+     * @Route("/", defaults={"page": "1"}, name="agenda-visualizar")
+     * @Route("/p/{page}", requirements={"page": "[1-9]\d*"}, name="agenda-visualizar-paginada")
+     * 
      * @Method("GET")
      */
-    public function visualizarAction()
+    public function visualizarAction($page)
     {
-        $agenda = $this->getDoctrine()->getRepository('AppBundle:Agenda')->listar();
+        $agenda = $this->getDoctrine()->getRepository('AppBundle:Agenda')->paginateReadMany($page);
         
         return $this->render('agenda/visualizar.html.twig', ['agenda' => $agenda]);
     }
