@@ -35,7 +35,7 @@
                     <td class="{{ a.periodico?: 'pontual' }}">{{ a.categoria }}</td>
                     <td title="{{ a.atividade }}">{{ a.atividade[:90] }}</td>
                     <td class="centro {{ dataStatus }}">{{ a.data|date('d/m/Y') }}</td>
-                    <td class="centro">{{ a.data|date('l')[:3] }}</td>
+                    <td class="centro">{{ a.data|date('l')[:3]|trans }}</td>
                     <td class="centro">{{ a.hora is not empty? a.hora|date('H:i'): '' }}</td>
 
                     <td class="centro">

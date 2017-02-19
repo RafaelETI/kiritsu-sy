@@ -13,6 +13,15 @@ class AgendaControllerTest extends WebTestCase
     public static function setUpBeforeClass()
     {
         self::$client = static::createClient();
+        
+        $crawler = self::$client->request('GET', '/login');
+        
+        $form = $crawler->selectButton('Entrar')->form();
+        
+        $form['_username'] = 'test';
+        $form['_password'] = '123';
+        
+        self::$client->submit($form);
     }
     
     private function smoke(Crawler $crawler)
@@ -74,7 +83,7 @@ class AgendaControllerTest extends WebTestCase
         $this->assertSame('Teste', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(0)->text());
         $this->assertSame('Atividade.', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(1)->text());
         $this->assertSame('02/01/2017', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(2)->text());
-        $this->assertSame('Mon', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(3)->text());
+        $this->assertSame('Seg', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(3)->text());
         $this->assertSame('19:23', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(4)->text());
     }
     
@@ -124,7 +133,7 @@ class AgendaControllerTest extends WebTestCase
         $this->assertSame('Teste 2', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(0)->text());
         $this->assertSame('Atividade 2.', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(1)->text());
         $this->assertSame('01/01/2017', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(2)->text());
-        $this->assertSame('Sun', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(3)->text());
+        $this->assertSame('Dom', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(3)->text());
         $this->assertSame('19:57', $crawler->filter('tbody tr')->eq(0)->filter('td')->eq(4)->text());
     }
     

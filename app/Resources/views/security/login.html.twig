@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% set title = 'Login' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <form action="{{ path('login') }}" method="post">
+        <table>
+            <caption>{{ error? error.messageKey: title }}</caption>
+
+            <tbody>
+                <tr>
+                    <th scope="row">Nome</th>
+                    <td><input type="text" name="_username" value="{{ last_username }}" maxlength="20" required autofocus /></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Senha</th>
+                    <td><input type="password" name="_password" required /></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Manter</th>
+                    <td><input type="checkbox" name="manter" checked /></td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <input type="hidden" name="_target_path" value="/" />
+{#                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>#}
+                        <button type="submit">Login</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+{% endblock %}

@@ -12,37 +12,39 @@
     </head>
     
     <body>
-        <nav class="esquerdo">
-            <div>
-                <img src="{{ asset('img/caminho.png') }}" alt="Kanji da palavra caminho" id="logo" />
-                <h1>Kiritsu*</h1>
-            </div>
+        {% if app.request.attributes.get('_route') != 'login' %}
+            <nav class="esquerdo">
+                <div>
+                    <img src="{{ asset('img/caminho.png') }}" alt="Kanji da palavra caminho" id="logo" />
+                    <h1>Kiritsu*</h1>
+                </div>
 
-            <ul>
-                <li>Agenda</li>
-                <a href="/"><img src="{{ asset('img/olho.png') }}/img/olho.png" title="Visualizar" /></a>
-                <a href="/agenda/cadastrar"><img src="{{ asset('img/mais.png') }}" title="Cadastrar" /></a>
+                <ul>
+                    <li>Agenda</li>
+                    <a href="/"><img src="{{ asset('img/olho.png') }}/img/olho.png" title="Visualizar" /></a>
+                    <a href="/agenda/cadastrar"><img src="{{ asset('img/mais.png') }}" title="Cadastrar" /></a>
 
-                <li>Histórico</li>
-                <a href="#"><img src="{{ asset('img/olho.png') }}" title="Visualizar" /></a>
-                <a href="#"><img src="{{ asset('img/lupa.png') }}" title="Buscar" /></a>
+                    <li>Histórico</li>
+                    <a href="#"><img src="{{ asset('img/olho.png') }}" title="Visualizar" /></a>
+                    <a href="#"><img src="{{ asset('img/lupa.png') }}" title="Buscar" /></a>
 
-                <li>Memória</li>
-                <a href="#"><img src="{{ asset('img/olho.png') }}" title="Visualizar" /></a>
-                <a href="#"><img src="{{ asset('img/mais.png') }}" title="Cadastrar" /></a>
-                <a href="#"><img src="{{ asset('img/lupa.png') }}" title="Buscar" /></a>
+                    <li>Memória</li>
+                    <a href="#"><img src="{{ asset('img/olho.png') }}" title="Visualizar" /></a>
+                    <a href="#"><img src="{{ asset('img/mais.png') }}" title="Cadastrar" /></a>
+                    <a href="#"><img src="{{ asset('img/lupa.png') }}" title="Buscar" /></a>
 
-                <li>Chuva</li>
-                <a href="#"><img src="{{ asset('img/olho.png') }}" title="Visualizar" /></a>
-                <a href="#"><img src="{{ asset('img/mais.png') }}" title="Cadastrar" /></a>
-                <a href="#"><img src="{{ asset('img/grafico.png') }}" title="Visualizar gráfico" /></a>
+                    <li>Chuva</li>
+                    <a href="#"><img src="{{ asset('img/olho.png') }}" title="Visualizar" /></a>
+                    <a href="#"><img src="{{ asset('img/mais.png') }}" title="Cadastrar" /></a>
+                    <a href="#"><img src="{{ asset('img/grafico.png') }}" title="Visualizar gráfico" /></a>
 
-                <li>Sair</li>
-                <a href="/logout"><img src="/img/logout.png" /></a>
-            </ul>
+                    <li>Sair</li>
+                    <a href="/logout"><img src="/img/logout.png" /></a>
+                </ul>
 
-            <img src="/l/inspiracao/visualizar/1" alt="Foto de personalidade" title="Nome" id="inspiracao" />
-        </nav>
+    {#            <img src="/l/inspiracao/visualizar/1" alt="Foto de personalidade" title="Nome" id="inspiracao" />#}
+            </nav>
+        {% endif %}
         
         <section id="conteudo">
             {% block body %}{% endblock %}

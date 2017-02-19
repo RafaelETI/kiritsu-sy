@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="pt" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="Sun">
+                <source>Sun</source>
+                <target>Dom</target>
+            </trans-unit>
+            
+            <trans-unit id="Mon">
+                <source>Mon</source>
+                <target>Seg</target>
+            </trans-unit>
+            
+            <trans-unit id="Tue">
+                <source>Tue</source>
+                <target>Ter</target>
+            </trans-unit>
+            
+            <trans-unit id="Wed">
+                <source>Wed</source>
+                <target>Qua</target>
+            </trans-unit>
+            
+            <trans-unit id="Thu">
+                <source>Thu</source>
+                <target>Qui</target>
+            </trans-unit>
+            
+            <trans-unit id="Fri">
+                <source>Fri</source>
+                <target>Sex</target>
+            </trans-unit>
+            
+            <trans-unit id="Sat">
+                <source>Sat</source>
+                <target>Sáb</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
